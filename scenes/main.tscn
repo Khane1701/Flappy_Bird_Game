@@ -6,14 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://di7ehkra0sgxv" path="res://scenes/bird.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://btwpevmiemc1p" path="res://scenes/ground.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://qy6e6mwmwyj" path="res://scenes/game_over.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" path="res://scenes/laser.tscn" id="7_laser"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="8_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/pickup.tscn" id="9_pickup"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="10_dialogue"]
 
 [node name="main" type="Node" unique_id=1906587433]
 script = ExtResource("1_sugp2")
 pipe_scene = ExtResource("2_tbgi4")
+laser_scene = ExtResource("7_laser")
+enemy_scene = ExtResource("8_enemy")
+pickup_scene = ExtResource("9_pickup")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=182670415]
 texture = ExtResource("1_ig7tw")
 offset = Vector2(432, 384)
+
+[node name="entities" type="Node2D" parent="."]
 
 [node name="bird" parent="." unique_id=745893544 instance=ExtResource("3_jyhfs")]
 
@@ -37,6 +46,20 @@ text = "0"
 
 [node name="game_over" parent="." unique_id=516312972 instance=ExtResource("6_tefeu")]
 
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.35
+
+[node name="enemy_timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="pickup_timer" type="Timer" parent="."]
+wait_time = 8.0
+
+[node name="dialogue" parent="." instance=ExtResource("10_dialogue")]
+
 [connection signal="hit" from="ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="pipe_timer" to="." method="_on_pipe_timer_timeout"]
 [connection signal="restart" from="game_over" to="." method="_on_game_over_restart"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="enemy_timer" to="." method="_on_enemy_timer_timeout"]
+[connection signal="timeout" from="pickup_timer" to="." method="_on_pickup_timer_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy"]
+[ext_resource type="Texture2D" uid="uid://cupdg744f0tvy" path="res://assets/flappy_bird_assets/bird1.png" id="2_enemy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
+radius = 24.0
+
+[node name="enemy" type="Area2D"]
+script = ExtResource("1_enemy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.4, 0.4, 1)
+texture = ExtResource("2_enemy")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_enemy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
