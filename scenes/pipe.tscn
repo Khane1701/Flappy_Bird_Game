@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cdgcw0gfsr1f8"]
+
+[ext_resource type="Script" uid="uid://ch26oh8yyjl6r" path="res://scripts/pipe.gd" id="1_arpqm"]
+[ext_resource type="Texture2D" uid="uid://dd6l3fd1j56s7" path="res://assets/flappy_bird_assets/pipe.png" id="2_8p0di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue8j2"]
+size = Vector2(78, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knq33"]
+size = Vector2(72, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfmhh"]
+size = Vector2(78, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_777sj"]
+size = Vector2(72, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wslee"]
+size = Vector2(5, 200)
+
+[node name="pipe" type="Area2D" unique_id=2067013408 groups=["pipes"]]
+script = ExtResource("1_arpqm")
+
+[node name="lower" type="Sprite2D" parent="." unique_id=443846414]
+texture = ExtResource("2_8p0di")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1704320076]
+position = Vector2(0, 118)
+shape = SubResource("RectangleShape2D_ue8j2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=185111681]
+position = Vector2(0, 398)
+shape = SubResource("RectangleShape2D_knq33")
+
+[node name="upper" type="Sprite2D" parent="." unique_id=748891679]
+texture = ExtResource("2_8p0di")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=446075694]
+position = Vector2(0, -118)
+shape = SubResource("RectangleShape2D_vfmhh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=1577018073]
+position = Vector2(0, -398)
+shape = SubResource("RectangleShape2D_777sj")
+
+[node name="score_zone" type="Area2D" parent="." unique_id=1731952593]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zone" unique_id=518470378]
+position = Vector2(47, 0)
+shape = SubResource("RectangleShape2D_wslee")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="score_zone" to="." method="_on_score_zone_body_entered"]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://qy6e6mwmwyj"]
+
+[ext_resource type="Script" uid="uid://dob1rnbyu83x7" path="res://scripts/game_over.gd" id="1_wqhvx"]
+[ext_resource type="Texture2D" uid="uid://bvcyq0g5mople" path="res://assets/flappy_bird_assets/restart.png" id="2_tbwuq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ue8j2"]
+texture = ExtResource("2_tbwuq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vfmhh"]
+texture = ExtResource("2_tbwuq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_777sj"]
+texture = ExtResource("2_tbwuq")
+
+[node name="game_over" type="CanvasLayer" unique_id=516312972]
+script = ExtResource("1_wqhvx")
+
+[node name="retry_button" type="Button" parent="." unique_id=479065513]
+offset_left = 342.0
+offset_top = 350.0
+offset_right = 502.0
+offset_bottom = 413.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ue8j2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vfmhh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_777sj")
+
+[connection signal="pressed" from="retry_button" to="." method="_on_retry_button_pressed"]
